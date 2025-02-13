@@ -1,6 +1,15 @@
 import random
 
-valid_choice = ('r', 'p', 's')
+ROCK = 'r'
+PAPER = 'p'
+SCISSORS = 's'
+choices = {
+        ROCK: '🪨 Rock',
+        PAPER: '📃 Paper',
+        SCISSORS: '✂️ Scissors'
+    }
+
+valid_choice = tuple(choices.keys())
 
 #Get computer choice
 def get_comp_choice():
@@ -13,13 +22,9 @@ def get_player_choice(player_no):
         choice = input(f"Invalid choice! Player {player_no}, please enter one of the following 'r', 'p', or 's': ").lower()
     return choice
 
-#Add emojies to the choices
+#Display choices
 def display_choices(player1_choice, player2_choice, player2_name):
-    choices = {
-        'r': '🪨 Rock',
-        'p': '📃 Paper',
-        's': '✂️ Scissors'
-    }
+    
     print(f"Player 1 choose: {choices[player1_choice]}")
     print(f"{player2_name} choose: {choices[player2_choice]}")
 
@@ -28,9 +33,9 @@ def determine_winner(player1_choice, player2_choice):
     if player1_choice == player2_choice:
         return "tie"
     elif (
-        (player1_choice == 'r' and player2_choice == 's') or
-        (player1_choice == 'p' and player2_choice == 'r') or
-        (player1_choice == 's' and player2_choice == 'p')
+        (player1_choice == ROCK and player2_choice == SCISSORS) or
+        (player1_choice == PAPER and player2_choice == ROCK) or
+        (player1_choice == SCISSORS and player2_choice == PAPER)
     ):
         return "player1"
     else:
